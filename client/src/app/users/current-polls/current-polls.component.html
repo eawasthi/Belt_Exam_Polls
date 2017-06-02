@@ -1,0 +1,26 @@
+
+ <h3>Current Polls</h3>
+ <p>Search: <input type="text" name="filter" [(ngModel)]="search_string"></p>
+<button (click)="this._usersService.create_newPoll()">Create a New poll</button>
+<button (click)="this._usersService.logOut()">Logout</button>
+
+<table>
+    <thead>
+    <th>Name</th>
+    <th>SurveyQuestion</th>
+    <th>DatePosted</th>
+    <th>Action</th>
+    </thead>
+
+      <tbody>
+        <tr *ngFor = "let result of _usersService.Questions | nameFilter:search_string">
+            <td>{{ result._User.Name }}</td>
+            <td><button (click)="Question(result._id)">{{result.Question}}</button></td>
+            <td>{{result.createdAt|date}}</td>   
+            <td *ngIf = "result._User.Name == _usersService.loggedUser.Name">
+            <button (click) ="_usersService.deleteQuestion(result._id)">Delete</button>
+            </td>
+        </tr>
+     </tbody>
+</table>
+

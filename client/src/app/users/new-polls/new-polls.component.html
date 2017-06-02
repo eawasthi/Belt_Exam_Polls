@@ -1,0 +1,22 @@
+<h1>Put the question and options here:</h1>
+
+<form (submit) = "canceling()">
+     <input type="submit" value="Cancel">
+</form>
+
+<form (submit) = "newQuestion()" #formData="ngForm" >
+    Question: <input type="text" [(ngModel)]="questioncreate.Question" required minlength="8"   name ="Question"  #Question= "ngModel" required><br>
+    Option 1:  <input type="text" [(ngModel)]="questioncreate.option1" required minlength="3"  name ="option1"  #option1= "ngModel" required><br>
+    Option 2: <input type="text" [(ngModel)]="questioncreate.option2" required minlength="3"  name ="option2"  #option2= "ngModel" required><br>
+    Option 3: <input type="text" [(ngModel)]="questioncreate.option3" required minlength="3"  name ="option3"  #option3= "ngModel" required><br>
+    Option 4: <input type="text" [(ngModel)]="questioncreate.option4" required minlength="3"  name ="option4"  #option4= "ngModel" required><br>
+    <input type="submit" value = "Create Poll" [disabled]="!formData.form.valid">
+
+
+  <p *ngIf="Question.errors?.required"> Question field is required!</p>
+  <p *ngIf="Question.errors?.minlength"> Question should be 8 characters long</p>
+  <p *ngIf="option1.errors?.required"> Option field is required!</p>
+  <p *ngIf="option2.errors?.required"> Option field is required!</p>
+  <p *ngIf="option3.errors?.required"> Option field is required!</p>
+  <p *ngIf="option4.errors?.required"> Option field is required!</p>
+</form>
